@@ -13,8 +13,8 @@ buttons:
       link: images/post/rotary-citation-club-excellence-award-goals-instructions-rotaract-clubs-en.pdf
 embedurl: https://app.sharefable.com/embed/demo/rotary-club-central-se-96lvaulzkkxagxb9
 images: 
-    - imglink: images/post/rotaryclubcentral1.png
-    - imglink: images/post/rotaryclubcentral2.png
+    - imglink: /images/post/rotaryclubcentral1.png
+    - imglink: /images/post/rotaryclubcentral2.png
 description: "A guide on how to Navigate trough the Rotary Club Central and Set the Goals to achieve the Rotaract Club Excellence Award."
 ---
 
