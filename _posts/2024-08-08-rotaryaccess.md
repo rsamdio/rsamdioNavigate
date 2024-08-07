@@ -18,7 +18,7 @@ images:
   - imglink: /images/post/rotaryclubcentral1.png
   - imglink: /images/post/rotaryclubcentral2.png
 description: A guide on how to Navigate through the Rotary Club Central and Set
-  the Goals to track your progress adn achieve the Rotaract Club Excellence
+  the Goals to track your progress and achieve the Rotaract Club Excellence
   Award.
 ---
 
