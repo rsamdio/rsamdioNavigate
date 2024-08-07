@@ -3,7 +3,7 @@
     <div class="col-md-4 mb-4 mb-md-0">
         <div class="post-slider slider-sm">
             {% for image in post.images %}
-            <img loading="lazy" src="{% if image contains "://" %}{{ image }}{% else %}{{ image | relative_url }}{% endif %}" class="img-fluid" alt="post-thumb" style="height:200px; object-fit: cover;">
+            <img loading="lazy" src="{% if image.imglink contains "://" %}{{ image.imglink }}{% else %}{{ image.imglink | relative_url }}{% endif %}" class="img-fluid" alt="post-thumb" style="height:200px; object-fit: cover;">
             {% endfor %}
         </div>
     </div>

@@ -43,6 +43,6 @@ collections: # A list of collections the CMS should be able to edit
         name: "contacts"
         widget: "list"
         fields:
-          - {label: "Image", widget: "image"}      
+          - {label: "Image", name: "imglink", widget: "image"}      
       - {label: "Description", name: "description", widget: "markdown"}
       - {label: "Body", name: "body", widget: "markdown", required: false}
