@@ -21,13 +21,13 @@ collections: # A list of collections the CMS should be able to edit
     fields: # The fields each document in this collection have
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD"}
+      - {label: "Date", name: "date", widget: "date"}
       - label: "Author"
         name: author
         widget: object
         fields:
           - {label: "Author Name", name: "name", widget: "string"}
-          - {label: "Author Bio Link", name: "link", widget: "string"}
+          - {label: "Author Bio Link", name: "biolink", widget: "string"}
       - label: "Tags"
         name: "tags"
         widget: "list"
@@ -39,8 +39,8 @@ collections: # A list of collections the CMS should be able to edit
           - {label: "CTA Button Text", name: "text", widget: "string"}
           - {label: "CTA Button Link", name: "link", widget: "string"}
       - {label: "Embed URL", name: "embedurl", widget: "string"}
-      - label: "Important Contacts"
-        name: "contacts"
+      - label: "Thumbnails"
+        name: "images"
         widget: "list"
         fields:
           - {label: "Image", name: "imglink", widget: "image"}      
