@@ -10,7 +10,7 @@ buttons:
     - text: Open Demo in New Tab
       link: https://go.rsamdio.org/navigate_clubcentral
     - text: Rotaract Club Excellence Award Instructions 
-      link: images/post/rotary-citation-club-excellence-award-goals-instructions-rotaract-clubs-en.pdf
+      link: /images/post/rotary-citation-club-excellence-award-goals-instructions-rotaract-clubs-en.pdf
 embedurl: https://app.sharefable.com/embed/demo/rotary-club-central-se-96lvaulzkkxagxb9
 images: 
     - imglink: /images/post/rotaryclubcentral1.png

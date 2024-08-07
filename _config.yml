@@ -7,7 +7,7 @@ url: "https://navigate.rsamdio.org" # the base hostname & protocol for your site
 baseurl: ""
 timezone: Asia/Kolkata
 
-ogpreview: images/socialpreview.png
+ogpreview: /images/socialpreview.png
 
 plugins:
   - jekyll-archives
