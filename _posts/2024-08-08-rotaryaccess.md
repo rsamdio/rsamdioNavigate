@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Rotary Club Central & Setting Goals for Rotaract Clubs"
+date: 2024-08-08
 author: 
     name: Rtn. Rtr. Arun Teja Godavarthi
     biolink: https://rtr.zeospec.com/
