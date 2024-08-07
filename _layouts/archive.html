@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<section class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12  mb-5 mb-lg-0">
+		
+			<div class="title-bordered mb-5 d-flex align-items-center">
+				<h1 class="h4">{{page.title | replace: "-"," "}}</h1>
+				<ul class="list-inline social-icons ml-auto mr-3 d-none d-sm-block">
+					<li class="list-inline-item"><a target="_blank" href="https://www.instagram.com/rsamdio/"><i class="ti-instagram"></i></a>
+					</li>
+			  		<li class="list-inline-item"><a target="_blank" href="https://www.facebook.com/rsamdio/"><i class="ti-facebook"></i></a>
+					</li>
+					<li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/company/rsamdio/"><i class="ti-linkedin"></i></a>
+					</li>
+					<li class="list-inline-item"><a target="_blank" href="https://www.youtube.com/@rsamdio"><i class="ti-youtube"></i></a>
+					</li>
+					<li class="list-inline-item"><a target="_blank" href="https://rsamdio.org/"><i class="ti-link"></i></a>
+					</li>
+				</ul>
+			</div>
+
+			{% for post in page.posts %}
+				{% include postbox.html %}
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+							

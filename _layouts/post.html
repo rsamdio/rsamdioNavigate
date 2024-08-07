@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+<section class="section">
+	<div class="container">
+		<article class="row mb-4">
+
+         <div class="col-lg-10 mx-auto mb-4">
+            <h1 class="h2 mb-3">{{page.title}}</h1>
+				<ul class="list-inline post-meta mb-3">
+					<li class="list-inline-item"><i class="ti-user mr-2"></i><a target="_blank" href="{{page.author.biolink}}">{{page.author.name}}</a>
+					</li>
+					<li class="list-inline-item"><i class="ti-calendar mr-2"></i>{{ page.date | date:"%B %d, %Y" }}</li>
+               {% if page.tags.size >= 1 %}
+               <li class="list-inline-item"><i class="ti-archive mr-2"></i>{% for tag in page.tags %}{% if forloop.first %}<a href="{{ site.baseurl }}/{{ tag | downcase }}" class="ml-1">{{ tag | replace: "-"," "}}</a>{% else %}, <a href="{{ site.baseurl }}/{{ tag | downcase }}" class="ml-1">{{ tag | replace: "-"," "}}</a>{% endif %}{% endfor %}
+               </li>
+               {% endif %}
+				</ul>
+
+            {% for button in page.buttons %}
+            <a href="{% if image contains "://" %}{{button.link}}{% else %}{{ button.link | relative_url }}{% endif %}" target="_blank" class="btn btn-outline-primary mb-2">{{button.text}}</a>
+            {% endfor %}
+			</div>
+
+         <!-- <div class="col-lg-6 col-md-3 col-12 mb-4">
+				<div class="post-slider">
+               {% for image in page.images %}
+               <img src="{% if image contains "://" %}{{ image }}{% else %}{{ image | relative_url }}{% endif %}" class="img-fluid" alt="post-thumb">
+               {% endfor %}
+				</div>
+			</div>
+
+         <div class="col-lg-6 col-md-3 col-12 mb-4">
+				<h1 class="h2 mb-3">{{page.title}}</h1>
+				<ul class="list-inline post-meta mb-3">
+					<li class="list-inline-item"><i class="ti-user mr-2"></i><a target="_blank" href="{{page.author.biolink}}">{{page.author.name}}</a>
+					</li>
+					<li class="list-inline-item"><i class="ti-calendar mr-2"></i>{{ page.date | date:"%B %d, %y" }}</li>
+               {% if page.tags.size >= 1 %}
+               <li class="list-inline-item"><i class="ti-archive mr-2"></i>{% for tag in page.tags %}{% if forloop.first %} <a href="{{ site.baseurl }}/{{ tag | downcase }}" class="ml-1"> {{ tag | replace: "-"," "}} </a>{% else %}, <a href="{{ site.baseurl }}/{{ tag | downcase }}" class="ml-1"> {{ tag | replace: "-"," "}} </a>{% endif %}{% endfor %}
+               </li>
+               {% endif %}
+				</ul>
+            {% for button in page.buttons %}
+            <a href="{{button.link}}" target="_blank" class="btn btn-outline-primary mb-2">{{button.text}}</a>
+            {% endfor %}
+         </div> -->
+
+         {% if page.embedurl %}
+         <div class="embed-wrapper col-12 mb-2">
+            <iframe style="border: 0px solid rgba(0, 0, 0, 0.1);" src="{{page.embedurl}}" allowfullscreen></iframe>
+         </div>
+         {% endif %}
+
+			<div class="col-lg-10 mx-auto">
+				<div class="content">
+               <br>
+               {{content}}
+            </div>
+			</div>
+		</article>
+	</div>
+</section>

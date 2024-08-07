@@ -1,0 +1,26 @@
+<article class="row mb-5">
+					
+    <div class="col-md-4 mb-4 mb-md-0">
+        <div class="post-slider slider-sm">
+            {% for image in post.images %}
+            <img loading="lazy" src="{% if image contains "://" %}{{ image }}{% else %}{{ image | relative_url }}{% endif %}" class="img-fluid" alt="post-thumb" style="height:200px; object-fit: cover;">
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h3 class="h5"><a class="post-title" href="{{ post.url | relative_url }}">{{post.title}}</a></h3>
+            <ul class="list-inline post-meta mb-2">
+                <li class="list-inline-item"><i class="ti-user mr-2"></i><a target="_blank" href="{{post.author.biolink}}">{{post.author.name}}</a>
+                </li>
+                <li class="list-inline-item"><i class="ti-calendar mr-2"></i>{{ post.date | date:"%B %d, %Y" }}</li>
+                {% if post.tags.size >= 1 %}
+                <li class="list-inline-item"><i class="ti-archive mr-2"></i>{% for tag in post.tags %}{% if forloop.first %} <a href="{{ site.baseurl }}/{{ tag | downcase }}" class="ml-1">{{ tag | replace: "-"," "}}</a>{% else %}, <a href="{{ site.baseurl }}/{{ tag | downcase }}" class="ml-1">{{ tag | replace: "-"," "}}</a>{% endif %}{% endfor %}
+                </li>
+                {% endif %}
+
+            </ul>
+            <p>{{ post.description | truncatewords:40 }}</p>
+            <!-- <p>{{ post.excerpt | strip_html | truncatewords:40 }}</p> -->
+            <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary">Continue to Detiails</a>
+        </div>
+    </article>

@@ -1,0 +1,54 @@
+<header class="sticky-top bg-white border-bottom border-default">
+    <div class="container">
+        
+        <nav class="navbar navbar-expand-lg navbar-white">
+            <a class="navbar-brand" href="{{site.baseurl}}/">
+                <img class="img-fluid" width="150px" src="{{site.baseurl}}/images/logo.png" alt="LogBook">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+                <i class="ti-menu"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse text-center" id="navigation">
+                <ul class="navbar-nav ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{site.baseurl}}/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{site.baseurl}}/about">About</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                           Categories <i class="ti-angle-down ml-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            {% assign tags_list = site.tags | sort %}
+                            {% if tags_list.first[0] == null %}
+                            {% for tag in tags_list %}
+                            <a class="dropdown-item" href="{{ site.baseurl }}/{{ tag | downcase }}">{{ tag | replace: "-"," "}}</a>
+                            {% endfor %}
+                            {% else %}
+                            {% for tag in tags_list %}
+                            <a class="dropdown-item" href="{{ site.baseurl }}/{{ tag[0] | downcase }}">{{ tag[0] | replace: "-"," "}}</a>
+                            {% endfor %}
+                            {% endif %}
+                            {% assign tags_list = nil %}
+                        </div>
+                     </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://go.rsamdio.org/socials">Follow RSA MDIO</a>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </nav>
+    </div>
+</header>

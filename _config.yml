@@ -1,0 +1,41 @@
+title: NAVIGATE - An initiative by Rotaract South Asia MDIO
+
+description: "Rotaract South Asia MDIO is pleased to launch NAVIGATE, The initaitve provides immersive guides along with the related resources for Rotaract Members, Club Leaders & District Rotaract Representatives on My Rotary and other Related Tools."
+
+url: "https://navigate.rsamdio.org" # the base hostname & protocol for your site
+# baseurl: "/the/subpath/of/your/site" # Set this value to "" if you want your site to be root
+baseurl: ""
+timezone: Asia/Kolkata
+
+ogpreview: images/socialpreview.png
+
+plugins:
+  - jekyll-archives
+  - jekyll-feed
+  - jekyll-sitemap
+
+# buildsettings
+markdown: kramdown
+permalink: /:slug/
+highlighter: rouge
+
+compress_html:
+  clippings: []
+  comments: []
+  endings: []
+  ignore:
+    envs: []
+  blanklines: false
+  profile: false
+  startings: []
+
+# Archives
+jekyll-archives:
+  enabled:
+    - tags
+  layout: archive
+  permalinks:
+    tag: '/:name/'
+
+include:
+  - _redirects

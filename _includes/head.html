@@ -1,0 +1,57 @@
+<head>
+	<meta charset="utf-8">
+	<title>{% if page.type == "tag" %}{{ page.title | replace: "-"," "}}{% else %}{{ page.title }}{% endif %}{% if page.url == "/" %}{{site.title}}{% else %} | {{site.title}}{% endif %}</title>
+	
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+	<meta name="description" content="{% if page.description %}{{page.description}}{% else %}{{site.description}}{% endif %}">
+	<meta name="author" content="ZeoSpec">
+
+	<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}"> 
+
+    <meta property="og:title" content="{% if page.type == "tag" %}{{ page.title | replace: "-"," "}}{% else %}{{ page.title }}{% endif %}{% if page.url == "/" %}{{site.title}}{% else %} | {{site.title}}{% endif %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{% if page.type == "tag" %}{{ page.title | replace: "-"," "}}{% else %}{{ page.title }}{% endif %}{% if page.url == "/" %}{{site.title}}{% else %} | {{site.title}}{% endif %}" />
+    <meta property="og:image" content="{% if page.image %}{% if page.image contains "://" %}{{ page.image }}{% else %}{{ page.image | absolute_url }}{% endif %}{% else %}{{ site.ogpreview | absolute_url }}{% endif %}" />
+    <meta property="og:description" content="{% if page.description %}{{page.description}}{% else %}{{site.description}}{% endif %}">
+    
+    <meta name="keywords" content="Rotaract, Rotary, Rotaract Bangalore, Bangalore East, 3190rbe, rbe" />
+
+    <meta name="subject" content="NAVIGATE - An initiative by Rotaract South Asia MDIO">
+
+	<meta name="url" content="https://navigate.rsamdio.org/">
+    <meta name="identifier-URL" content="https://navigate.rsamdio.org/">
+    
+	<meta http-equiv="cache-control" content="public" />
+    <meta http-equiv="Expires" content="0">
+    
+	<meta name="theme-color" content="#f0f0f0">
+
+
+
+	<!-- plugins -->
+	<link rel="preload" href="https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFWJ0bbck.woff2" style="font-display: optional;">
+	<link rel="stylesheet" href="{{site.baseurl}}/plugins/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:600%7cOpen&#43;Sans&amp;display=swap" media="screen">
+	
+	<link rel="stylesheet" href="{{site.baseurl}}/plugins/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="{{site.baseurl}}/plugins/slick/slick.css">
+	
+	<!-- Main Stylesheet -->
+	<link rel="stylesheet" href="{{site.baseurl}}/css/style.css">
+	
+	<!--Favicon-->
+	<link rel="shortcut icon" href="{{site.baseurl}}/images/favicon.png" type="image/x-icon">
+	<link rel="icon" href="{{site.baseurl}}/images/favicon.png" type="image/x-icon">
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QZDYH5YMXH"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-QZDYH5YMXH');
+	</script>
+</head>
