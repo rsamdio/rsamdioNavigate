@@ -30,8 +30,8 @@ collections: # A list of collections the CMS should be able to edit
         name: author
         widget: object
         fields:
-          - {label: "Author Name", name: "name", widget: "string"}
-          - {label: "Author Bio Link", name: "biolink", widget: "string"}
+          - {label: "Author Name", name: "name", widget: "string", default: "Rtn. Rtr. Arun Teja Godavarthi"}
+          - {label: "Author Bio Link", name: "biolink", widget: "string", default: "https://rtr.zeospec.com/"}
       - label: "Tags"
         name: "tags"
         widget: "list"
@@ -40,7 +40,7 @@ collections: # A list of collections the CMS should be able to edit
         name: buttons
         widget: list
         fields:
-          - {label: "CTA Button Text", name: "text", widget: "string"}
+          - {label: "CTA Button Text", name: "text", widget: "string", default: "Open Demo in New Tab"}
           - {label: "CTA Button Link", name: "link", widget: "string"}
       - {label: "Embed URL", name: "embedurl", widget: "string"}
       - label: "Thumbnails"
