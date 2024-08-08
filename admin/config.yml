@@ -8,7 +8,7 @@ publish_mode: editorial_workflow
 
 media_folder: "images/post/" # Folder where user uploaded files should go
 site_url: https://navigate.rsamdio.org
-display_url: navigate.rsamdio.org
+display_url: https://navigate.rsamdio.org
 logo_url: https://navigate.rsamdio.org/images/logo.png
 
 collections: # A list of collections the CMS should be able to edit 
