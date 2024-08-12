@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Club Data (DRR Access)
-date: 2024-08-08
+date: 2024-08-13
 author:
   name: Rtn. Rtr. Arun Teja Godavarthi
   biolink: https://rtr.zeospec.com/
@@ -21,3 +21,4 @@ images:
 description: An immersive demo for the District Rotaract Representatives on how
   to access & download the data of the Clubs in the District.
 ---
+The District Rotaract Representatives are provided with the access to the
