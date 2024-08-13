@@ -21,4 +21,9 @@ images:
 description: An immersive demo for the District Rotaract Representatives on how
   to access & download the data of the Clubs in the District.
 ---
-The District Rotaract Representatives are provided with the access to the
+The District Rotaract Representatives are provided with the access to view and download the various data including the data of Rotaract & Rotary Clubs.
+
+This primarily covers the following reports available for the District Rotaract Representatives:
+
+* **Clubs in My District**
+* **Listing of Sponsored and Satellite Clubs**
