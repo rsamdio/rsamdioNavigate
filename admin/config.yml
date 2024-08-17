@@ -35,7 +35,7 @@ collections: # A list of collections the CMS should be able to edit
       - label: "Tags"
         name: "tags"
         widget: "list"
-        default: ["DRR-Access,Club-Leader-Access"]
+        default: ["DRR-Access,Club-Leader-Access,Member-Access,Public-Access"]
       - label: "CTA Buttons"
         name: buttons
         widget: list
