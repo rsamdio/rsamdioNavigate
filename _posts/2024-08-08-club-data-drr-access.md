@@ -9,7 +9,7 @@ tags:
   - DRR-Access
 buttons:
   - text: Open Demo in New Tab
-    link: https://go.rotaract3191.org/navigate_clubdatadrr
+    link: https://go.rsamdio.org/navigate_clubdatadrr
 embedurl: https://app.sharefable.com/embed/demo/club-data-drr-access-n-jmmno7v8okv4gcpc
 images:
   - imglink: /images/post/clubdatadrr1.png
