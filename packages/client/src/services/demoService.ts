@@ -5,7 +5,8 @@ import {
   StepManifest,
   DOMSnapshot,
   uploadManifestToR2,
-  uploadDOMSnapshotToR2
+  uploadDOMSnapshotToR2,
+  APP_INDEXNOW_CONFIG
 } from '@serverless-tour/common';
 import {
   collection,
@@ -1161,6 +1162,27 @@ export async function getDOMSnapshot(snapshotUrl: string, demoId?: string, stepI
 }
 
 /**
+ * Fallback: Client-side push notification to IndexNow API (Bing, Yandex, etc.)
+ */
+async function notifyIndexNowClient(urlList: string[]): Promise<void> {
+  try {
+    const payload = {
+      host: APP_INDEXNOW_CONFIG.host,
+      key: APP_INDEXNOW_CONFIG.key,
+      keyLocation: APP_INDEXNOW_CONFIG.keyLocation,
+      urlList
+    };
+    await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.warn('IndexNow client dispatch notice:', err);
+  }
+}
+
+/**
  * Publish Tour Manifest to R2 (Zero-Database Public Pipeline)
  */
 export async function publishDemo(
@@ -1291,6 +1313,14 @@ export async function publishDemo(
   localStorage.setItem(`manifest_${demoId}`, JSON.stringify(manifest));
   if (demo.slug) {
     localStorage.setItem(`manifest_${demo.slug}`, JSON.stringify(manifest));
+  }
+
+  // If Cloud Function did not handle it (client-side upload fallback), push to IndexNow directly
+  if (!fnRes?.manifestUrl) {
+    notifyIndexNowClient([
+      `https://navigate.rsamdio.org/view/${vanityPath}`,
+      'https://navigate.rsamdio.org/'
+    ]);
   }
 
   return { manifestUrl, manifest };
@@ -1451,6 +1481,10 @@ export async function unpublishDemo(demoId: string): Promise<void> {
     // Cloud Function unavailable or R2 not configured — fall back to local-only mark
     console.warn('unpublishTourManifest Cloud Function unavailable, updating Firestore only.');
     await updateDemo(demoId, { isPublished: false, publishedManifestUrl: undefined });
+    notifyIndexNowClient([
+      `https://navigate.rsamdio.org/view/${demoId}`,
+      'https://navigate.rsamdio.org/'
+    ]);
   }
 
   // 2. Purge both ID-keyed and slug-keyed local manifest caches

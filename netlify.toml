@@ -3,7 +3,7 @@
 # ==============================================================================
 
 [build]
-  command = "npm run build:client"
+  command = "npm run build:client && node scripts/submit-indexnow.js --build"
   publish = "packages/client/dist"
 
 # Single Page Application (SPA) Routing Redirects

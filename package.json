@@ -16,6 +16,8 @@
     "build:ext": "npm run build --workspace=packages/ext-tour",
     "build:common": "npm run build --workspace=packages/common",
     "verify": "node scripts/package-extension.js && node scripts/harness-verify.js",
+    "indexnow": "node scripts/submit-indexnow.js",
+    "indexnow:dry": "node scripts/submit-indexnow.js --dry-run",
     "preview": "npm run preview --workspace=packages/client"
   },
   "keywords": [

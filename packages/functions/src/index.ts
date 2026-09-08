@@ -199,6 +199,32 @@ async function syncCatalogToR2(client: any, bucketName: string, publicUrl: strin
 }
 
 /**
+ * Helper: Notify IndexNow API of newly published, updated, or unpublished guide URLs
+ */
+async function notifyIndexNow(urlList: string[]) {
+  try {
+    const key = process.env.INDEXNOW_KEY || 'e4b54e7e62a343df89961d1ea009e530';
+    const host = 'navigate.rsamdio.org';
+    const payload = {
+      host,
+      key,
+      keyLocation: `https://${host}/${key}.txt`,
+      urlList
+    };
+
+    const res = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+
+    console.log(`[notifyIndexNow] Dispatched ${urlList.length} URL(s) to IndexNow (HTTP ${res.status})`);
+  } catch (err) {
+    console.warn('[notifyIndexNow] Notice: IndexNow notification failed (non-blocking):', err);
+  }
+}
+
+/**
  * Callable Function: publishTourManifest
  * Compiles and directly publishes manifest.json, step HTML snapshots, and edge catalog.json to Cloudflare R2.
  */
@@ -304,6 +330,13 @@ export const publishTourManifest = onCall(async (request) => {
 
   // 5. Update static edge catalog on R2
   await syncCatalogToR2(client, bucketName, cleanPublicUrl);
+
+  // 6. Push real-time update to IndexNow search engines (Bing, Yandex, etc.)
+  const guideSlug = (manifest as any).slug || demoId;
+  await notifyIndexNow([
+    `https://navigate.rsamdio.org/view/${guideSlug}`,
+    'https://navigate.rsamdio.org/'
+  ]);
 
   return {
     success: true,
@@ -619,6 +652,12 @@ export const unpublishTourManifest = onCall(async (request) => {
       throw new HttpsError('internal', 'Failed to unpublish tour.');
     }
   }
+
+  // 4. Push update to IndexNow search engines so stale guide URLs are de-indexed/updated
+  await notifyIndexNow([
+    `https://navigate.rsamdio.org/view/${demoId}`,
+    'https://navigate.rsamdio.org/'
+  ]);
 
   return { success: true };
 });

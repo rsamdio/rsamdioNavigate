@@ -10,7 +10,7 @@ This index provides a fast, authoritative lookup map for all modules, services, 
 * [`src/index.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/index.ts): Main export file for the shared package exposing the types, DOM selector, DOM serializer, DOM rehydrator, and R2 client.
 * [`src/types/demo.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/types/demo.ts): Core TypeScript definitions and schemas (`DemoDocument`, `StepDocument`, `TourManifest`, `StepManifest`, `GlobalStepSettings`, `TooltipDefaults`, `BeaconDefaults`, `ModalDefaults`, `DOMModification`, `StepAction`, `InputAction`, `BeaconConfig`, `FirebaseConfig`, `R2Config`, `UserRole`, `CreatorProfile`).
 * [`src/types/snapshot.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/types/snapshot.ts): DOM Snapshot schema representing captured page states (`DOMSnapshot`, `ClickedElementInfo`, `RehydrationOptions`, `CaptureOptions`).
-* [`src/constants/appConfig.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/constants/appConfig.ts): Static client-side production config values for Firebase Auth/Firestore and Cloudflare R2 bucket configurations.
+* [`src/constants/appConfig.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/constants/appConfig.ts): Static client-side production config values for Firebase Auth/Firestore, Cloudflare R2 bucket configurations, Google Analytics measurement ID (`APP_GA_MEASUREMENT_ID`), and IndexNow credentials (`APP_INDEXNOW_CONFIG`).
 * [`src/dom/serializer.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/dom/serializer.ts): Captured step DOM serialization and sanitization utility (`generateCssSelector`, `generateXPath`, `getElementCoordinates`, `collectDocumentStyles`, `serializeDOM`, `captureDOMSnapshot`). Inlines WebP-scaled images and canvas states while scrubbing scripts/CSP tags.
 * [`src/dom/rehydrator.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/dom/rehydrator.ts): Sandboxed iframe rehydration engine (`rehydrateIframeSnapshot`, `applyDOMModifications`, `simulateTypingInElement`, `findElementInSnapshot` with Euclidean closest-coordinate disambiguation, `computeTooltipPosition` with bidirectional `ObstacleRect` avoidance, `computeBeaconPosition`, `computeCardEdgePoint`). Translates static snapshots back to live, interactive pages without script execution traps.
 * [`src/storage/r2Client.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/common/src/storage/r2Client.ts): S3-compatible R2 upload & fetch helpers (`createR2Client`, `uploadDOMSnapshotToR2`, `uploadManifestToR2`, `fetchManifestFromR2`). Used for publishing static JSON assets to Cloudflare CDN.
@@ -24,13 +24,14 @@ This index provides a fast, authoritative lookup map for all modules, services, 
 * [`vite.config.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/vite.config.ts): Vite build config for the client application.
 * [`tailwind.config.js`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/tailwind.config.js): Tailwind CSS design system tokens matching RSA Navy (`#0c3c60`) and slate palette.
 * [`postcss.config.js`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/postcss.config.js): PostCSS pipeline configuration for Tailwind and Autoprefixer.
-* [`index.html`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/index.html): HTML5 entry document with preloaded fonts, Google Analytics, SEO meta tags, and root container `#root`.
+* [`index.html`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/index.html): HTML5 entry document with preloaded fonts, Google Analytics 4 (`G-QZDYH5YMXH`), SEO meta tags, and root container `#root`.
+* [`public/e4b54e7e62a343df89961d1ea009e530.txt`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/public/e4b54e7e62a343df89961d1ea009e530.txt): IndexNow domain ownership verification key file for search engine push indexing.
 * [`src/main.tsx`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/src/main.tsx): Entry point rendering the React application root.
 * [`src/index.css`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/src/index.css): Core global styling, Tailwind directives, glassmorphic card utilities, and animation keyframes.
 * [`src/vite-env.d.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/src/vite-env.d.ts): TypeScript environment definitions for Vite client assets.
 
 ### Pages & Router
-* [`src/App.tsx`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/src/App.tsx): Main application router and shell declaring routes for the landing page, preview player, auth pages, and editor:
+* [`src/App.tsx`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/client/src/App.tsx): Main application router and shell with Google Analytics 4 SPA route tracker (`AnalyticsTracker`) declaring routes for the landing page, preview player, auth pages, and editor:
   * `/` -> `PublicLandingPage`
   * `/view/:demoId` -> `PublicTourPlayer`
   * `/admin` -> `Dashboard` (Admin)
@@ -77,8 +78,8 @@ This index provides a fast, authoritative lookup map for all modules, services, 
 * [`.env`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/functions/.env): Server-side environment variables storing Cloudflare R2 bucket credentials (`R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET_NAME`, `R2_PUBLIC_URL`).
 * [`src/index.ts`](file:///Users/zeospec/Dev/Code/RSANavigate/packages/functions/src/index.ts): Main Cloud Functions entry point declaring backend endpoints:
   * `getPresignedUploadUrl`: Issues secure, short-lived Cloudflare R2 S3 pre-signed PUT URLs for client snapshot uploads.
-  * `publishTourManifest`: Edge deployment orchestrator. Bundles walkthrough config, images, and HTML into a flat static bundle, writing it directly to R2.
-  * `unpublishTourManifest`: Unpublishes walkthrough from Edge CDN, removes manifest from R2, sets `isPublished: false`, and updates catalog.json.
+  * `publishTourManifest`: Edge deployment orchestrator. Bundles walkthrough config, images, and HTML into a flat static bundle, writes directly to R2, and sends real-time push to IndexNow search engines.
+  * `unpublishTourManifest`: Unpublishes walkthrough from Edge CDN, removes manifest from R2, sets `isPublished: false`, re-syncs catalog.json, and pushes de-indexing notice to IndexNow.
   * `deleteTourAssets`: Full cascading deletion using ListObjectsV2 to purge manifest and all step snapshots from R2, delete Firebase Storage drafts, drop Firestore subcollections/documents, and re-sync catalog.json.
   * `setUserRole`: Super Admin RBAC role updater.
 
@@ -120,6 +121,7 @@ This index provides a fast, authoritative lookup map for all modules, services, 
 * [`package.json`](file:///Users/zeospec/Dev/Code/RSANavigate/package.json): Root monorepo workspace scripts orchestrating development, packaging, building, and harness verification.
 
 ### Automation & Verification Scripts
+* [`scripts/submit-indexnow.js`](file:///Users/zeospec/Dev/Code/RSANavigate/scripts/submit-indexnow.js): Search engine push engine for the IndexNow protocol (Microsoft Bing, Yandex, Seznam.cz, Naver, Yep) supporting dynamic Edge catalog discovery, single URL submission, and Netlify CI production build hooks.
 * [`scripts/harness-verify.js`](file:///Users/zeospec/Dev/Code/RSANavigate/scripts/harness-verify.js): Agent harness verification and drift detection engine checking TypeScript builds, client secret isolation, and complete `.agents/INDEX.md` synchronization.
 * [`scripts/package-extension.js`](file:///Users/zeospec/Dev/Code/RSANavigate/scripts/package-extension.js): Extension packaging script compiling `packages/ext-tour` and creating 1-click downloadable `navigate-recorder-extension.zip` in `packages/client/public`.
 * [`scripts/generate-icons.js`](file:///Users/zeospec/Dev/Code/RSANavigate/scripts/generate-icons.js): Icon generator script creating extension icons and PNG/WebP assets from SVG vector masters.

@@ -63,7 +63,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               NAVIGATE (accessible at <code className="bg-slate-100 px-1.5 py-0.5 rounded text-[#0c3c60] font-mono text-xs">navigate.rsamdio.org</code>) is an interactive guide and walkthrough portal built for Rotaract Members, Club Leaders, and District Rotaract Representatives across South Asia.
             </p>
             <p>
-              We are committed to user privacy. Public walkthrough viewers enjoy a <strong>zero-tracking, zero-database architecture</strong>. When you browse the catalog or play an interactive guide, your actions are delivered statically via edge CDN without tracking cookies, personal profiling, or data harvesting.
+              We are committed to user privacy. Public walkthrough viewers enjoy a <strong>high-performance, privacy-conscious architecture</strong>. When you browse the catalog or play an interactive guide, your actions are delivered statically via edge CDN without invasive profiling, data harvesting, or advertising tracking.
             </p>
           </section>
 
@@ -99,13 +99,14 @@ export const PrivacyPolicyPage: React.FC = () => {
 
           {/* Section 4 */}
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-900">4. Third-Party Infrastructure</h2>
+            <h2 className="text-lg font-bold text-slate-900">4. Third-Party Infrastructure & Analytics</h2>
             <p>
               NAVIGATE relies on standard, privacy-compliant edge infrastructure:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600">
               <li><strong>Cloudflare R2 CDN</strong>: Serves static guide manifests and assets globally with high speed and zero-tracking.</li>
               <li><strong>Google Firebase</strong>: Manages backend creator authentication and security policies.</li>
+              <li><strong>Google Analytics 4</strong>: Collects anonymous, aggregated usage metrics (e.g. guide page views and session counts) to help Rotaract South Asia MDIO improve educational content. No personally identifiable information or marketing profiling is collected.</li>
             </ul>
           </section>
 
@@ -113,7 +114,7 @@ export const PrivacyPolicyPage: React.FC = () => {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-900">5. Cookies & Local Storage</h2>
             <p>
-              NAVIGATE does not use advertising or tracking cookies. Local storage is strictly used for functional user experience preferences (such as remembering your search query or audio mute settings during walkthrough playback).
+              NAVIGATE does not use advertising or marketing trackers. Local storage is used for functional preferences (such as remembering search queries and audio mute state). Privacy-compliant analytics cookies may be utilized by Google Analytics for aggregate platform metrics.
             </p>
           </section>
 
